@@ -1,13 +1,20 @@
 # Architecture
 
-The first task in MILESTONE_01 is implemented: package skeleton and pure axis
-geometry. Gear mathematics, solving, Fusion adapters and commands remain pending.
+Implemented: pure axis geometry, corrected mathematical helpers, standard spur
+dimensions and an adapted rack-envelope profile. Pair solving, Fusion adapters
+and commands remain pending.
 
 - `core/geometry/vector.py`: immutable finite vectors and stable normalization.
 - `core/geometry/line.py`: normalized infinite axes, shaft angles and true distance.
 - `core/geometry/axis_relation.py`: tolerance-aware relationship and local spacing.
 - `core/tolerances.py`: explicit millimeter/radian tolerances.
-- `core/gears` and `core/solver`: reserved packages, no implementations yet.
+- `core/geometry/planar.py`: immutable XY vectors and unique segment intersection.
+- `core/numerics.py`: bounded root solving with explicit failures.
+- `core/gears/spur.py`: validated unshifted spur dimensions and rack limits.
+- `core/gears/involute.py`: canonical analytic involute.
+- `core/gears/study_gears_profile.py`: isolated MIT-attributed rack-envelope
+  adaptation, analytic root joins and error-controlled immutable polyline output.
+- `core/solver`: reserved for fixed-axis pair solving.
 - `fusion`: future Autodesk API boundary, including all unit conversions.
 - `commands/gear_pair`: future orchestration; no gear equations in UI handlers.
 - `addin.py`: documentation placeholder, not a working Fusion entry point.

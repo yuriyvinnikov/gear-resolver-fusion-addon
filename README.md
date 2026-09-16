@@ -334,12 +334,12 @@ Generated geometry must not be presented as automatically safe for a real load c
 
 ## Current status
 
-The first implementation task is complete: repository skeleton, pure 3D vector
-and axis geometry, tolerance-aware classification, and automated geometry tests.
+Implemented: pure 3D axis geometry, robust mathematical helpers, standard spur
+dimensions and Study Gears rack-envelope profile adaptation with 56 passing tests.
+The pure core generates deterministic 2D profiles, including root transitions.
 
-Gear generation, Study Gears integration, pair solving and the Fusion command
-are not implemented yet. Milestone 01 is not complete, and Fusion runtime
-behavior has not been validated.
+Pair solving and Fusion model generation/UI are not implemented yet.
+Milestone 01 is not complete; Fusion runtime behavior has not been validated.
 
 Run tests from the project root (Python 3.10+; PowerShell):
 
@@ -350,8 +350,9 @@ python -m unittest discover -s tests -v
 
 See [development](docs/development.md), [architecture](docs/architecture.md),
 [math conventions](docs/gear-math.md) and [Fusion API notes](docs/fusion-api-notes.md).
-The project license still needs to be selected by its owner; no third-party
-gear code has been incorporated.
+The project license still needs to be selected by its owner. Adapted Study Gears
+material retains its MIT attribution and full license; see
+[adaptation details](docs/study-gears-adaptation.md) and THIRD_PARTY_NOTICES.md.
 
 Start with [`MILESTONE_01.md`](./MILESTONE_01.md) and follow the repository rules in [`AGENTS.md`](./AGENTS.md).
 

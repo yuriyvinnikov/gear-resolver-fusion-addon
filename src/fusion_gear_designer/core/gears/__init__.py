@@ -1,1 +1,1 @@
-"""Reserved for spur mathematics after the Study Gears review."""
+"""Pure external spur dimensions and MIT-attributed rack-envelope profiles."""

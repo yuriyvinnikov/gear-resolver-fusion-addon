@@ -37,8 +37,9 @@ not complete the milestone or verify Fusion behavior.
 
 ## Next task
 
-The [Study Gears review](study-gears-review.md) records the license and proposed
-integration boundary. Revisions and helper dependencies are now reviewed and
-pinned in `study-gears-source-lock.json`. Address the documented numerical and
-intersection defects during adaptation. Implement and test spur math and solving,
-followed by Fusion selection, placement and command UI.
+Spur dimensions and rack-envelope profiles are implemented; see the
+[adaptation record](study-gears-adaptation.md), source lock and gear-math.md.
+The complete suite has 56 tests, including the two helper defect regressions.
+Next implement fixed-center-distance tooth-count and ratio solving, explicit
+pair backlash allocation, and pair geometry validation. Fusion selection,
+placement and command UI follow after pure solver tests pass.

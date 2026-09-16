@@ -571,3 +571,40 @@ After coding:
 5. update documentation if assumptions changed.
 
 Do not report untested behavior as working.
+
+### Git commit discipline
+
+Make separate commits for separate logical stages of work.
+
+Each commit should:
+
+- contain one coherent change or tightly related set of changes;
+- leave the repository in a reasonably understandable state;
+- use a descriptive commit message;
+- include the relevant tests or documentation when they belong to that change.
+
+Prefer commit messages such as:
+
+```text
+docs: audit Study Gears licensing and geometry
+core: add axis geometry primitives
+core: add spur gear math
+solver: add fixed-center-distance spur pair solving
+fusion: add construction-axis selection adapter
+fusion: add gear component placement
+```
+
+Avoid vague mega-commits such as:
+
+```text
+implemented stuff
+updates
+final changes
+fixes
+```
+
+Do not combine unrelated architecture, math, UI, documentation, and Fusion-integration changes into one large commit merely for convenience.
+
+When a task naturally has multiple stages, commit each completed stage separately before proceeding to the next one.
+
+Unless the user explicitly requests otherwise, work on the designated development branch and do not push directly to the protected/main branch.

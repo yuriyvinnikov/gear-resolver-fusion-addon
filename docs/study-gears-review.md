@@ -1,5 +1,8 @@
 # Study Gears review — 2026-09-16
 
+Historical audit: implementation has since proceeded. Current reuse, fixes and
+tests are recorded in [study-gears-adaptation.md](study-gears-adaptation.md).
+
 ## Result
 
 Recommend a narrow adaptation of external spur profile mathematics behind our
