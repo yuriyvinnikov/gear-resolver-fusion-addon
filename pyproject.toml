@@ -1,0 +1,12 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "fusion-gear-designer"
+version = "0.1.0"
+description = "Geometry-driven gear design core for Autodesk Fusion"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]

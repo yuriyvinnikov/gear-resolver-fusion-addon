@@ -1,0 +1,22 @@
+{
+  "reviewed_on": "2026-09-16",
+  "repository": "https://github.com/osamutake/fusion360-study-gears",
+  "commit": "e8d0efcb3ad40e52c1e07b2f82ef4a24112c5094",
+  "files": {
+    "LICENSE.txt": "e15b7eea1cfc5f732fb691512db10cace04b15da",
+    ".gitmodules": "acdbd9477c210829b84e4a3588776ad51c2ef059",
+    "modules/gear_curve.py": "d87b793a6ff53888ec7377dc90613aa17e18fa26",
+    "modules/gear_cylindrical.py": "e4dd12160948cdc40a7dfc2981c585cdaa7f7c38",
+    "modules/gear_curve_curve.py": "14628bb0f7cf1e827cd2e79bb81eed4ed421cdcb",
+    "modules/lib/function.py": "e24b16ced49fdb42f499604db3066fe636f74715"
+  },
+  "helper": {
+    "repository": "https://github.com/osamutake/fusion360-helper",
+    "commit": "d313728f8d50e2b792385ff7fb6b735037c6aa36",
+    "files": {
+      "LICENSE.txt": "e15b7eea1cfc5f732fb691512db10cace04b15da",
+      "__init__.py": "f57d7ac060ac2ea81f37471854543bb351d0162d",
+      "vector.py": "76dbf70d1b9b5f2cd2718e366384fdd8d219d40e"
+    }
+  }
+}
