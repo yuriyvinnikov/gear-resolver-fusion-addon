@@ -1,8 +1,8 @@
 # Architecture
 
 Implemented: pure axis geometry, corrected mathematical helpers, standard spur
-dimensions and an adapted rack-envelope profile. Pair solving, Fusion adapters
-and commands remain pending.
+dimensions, an adapted rack-envelope profile and fixed-spacing pair solving.
+Fusion adapters and commands remain pending.
 
 - `core/geometry/vector.py`: immutable finite vectors and stable normalization.
 - `core/geometry/line.py`: normalized infinite axes, shaft angles and true distance.
@@ -14,7 +14,10 @@ and commands remain pending.
 - `core/gears/involute.py`: canonical analytic involute.
 - `core/gears/study_gears_profile.py`: isolated MIT-attributed rack-envelope
   adaptation, analytic root joins and error-controlled immutable polyline output.
-- `core/solver`: reserved for fixed-axis pair solving.
+- `core/solver/spur_pair.py`: shared pair definition, center-distance tolerances,
+  tooth-count validation and geometry-derived shaft-spacing entry points.
+- `core/solver/ratio_search.py`: bounded integer search and explicit ranked
+  candidates, including absolute/relative ratio errors and no-solution failures.
 - `fusion`: future Autodesk API boundary, including all unit conversions.
 - `commands/gear_pair`: future orchestration; no gear equations in UI handlers.
 - `addin.py`: documentation placeholder, not a working Fusion entry point.

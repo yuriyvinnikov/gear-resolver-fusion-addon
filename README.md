@@ -335,10 +335,12 @@ Generated geometry must not be presented as automatically safe for a real load c
 ## Current status
 
 Implemented: pure 3D axis geometry, robust mathematical helpers, standard spur
-dimensions and Study Gears rack-envelope profile adaptation with 56 passing tests.
+dimensions, Study Gears rack-envelope profiles and fixed-spacing pair solvers
+with 86 passing tests.
 The pure core generates deterministic 2D profiles, including root transitions.
 
-Pair solving and Fusion model generation/UI are not implemented yet.
+Tooth-count and ranked ratio modes derive spacing from pure axis references.
+Fusion model generation/UI are not implemented yet.
 Milestone 01 is not complete; Fusion runtime behavior has not been validated.
 
 Run tests from the project root (Python 3.10+; PowerShell):

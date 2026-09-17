@@ -39,7 +39,25 @@ not complete the milestone or verify Fusion behavior.
 
 Spur dimensions and rack-envelope profiles are implemented; see the
 [adaptation record](study-gears-adaptation.md), source lock and gear-math.md.
-The complete suite has 56 tests, including the two helper defect regressions.
-Next implement fixed-center-distance tooth-count and ratio solving, explicit
-pair backlash allocation, and pair geometry validation. Fusion selection,
-placement and command UI follow after pure solver tests pass.
+The complete suite has 86 tests, including the two helper defect regressions and
+30 solver tests. Fixed-distance tooth-count and ratio modes are implemented with
+pair backlash split equally. Next implement the Fusion construction-axis selection
+adapter (verify official API units and occurrence coordinates), then placement,
+tooth clocking and pair interference validation before model generation/UI.
+
+## Solver example (no Fusion required)
+
+```python
+from fusion_gear_designer.core.solver import PairDefinition, search_ratio
+
+definition = PairDefinition(module_mm=1.5, backlash_mm=0.15)
+candidates = search_ratio(45.0, definition, desired_ratio=2.0)
+for candidate in candidates:
+    pair = candidate.solution
+    print(pair.input_gear.teeth, pair.output_gear.teeth,
+          pair.ratio, candidate.relative_ratio_error)
+```
+
+The axis-based entry points derive the distance from Line3D references. The scalar
+entry points exist for pure tests and adapter-independent use, not a manual UI
+override of selected shaft geometry.

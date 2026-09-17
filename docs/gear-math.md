@@ -40,7 +40,7 @@ Module m, integer teeth z, pressure angle alpha, per-gear thickness reduction b:
 - Outside radius `ra=rp+m`; root radius `rf=rp-1.25*m`.
 - Circular pitch `pi*m`, angular pitch `2*pi/z`.
 - Pitch tooth thickness `s=pi*m/2-b`. Here `backlash_mm` is the **per-gear**
-  reduction. Future pair input B should use b=B/2 on each gear for equal sharing.
+  reduction. PairDefinition input B uses b=B/2 on each gear for equal sharing.
 - Thickness is positive and explicit; the 2D outline is independent of it.
 
 Numerical domain: `1e-6 <= m <= 1e6` mm, `14.5 <= alpha <= 30` degrees,
@@ -93,4 +93,43 @@ This bounds polyline interpolation, not any future fitted spline.
 
 No undercut trimming, arbitrary rack fillets, profile shift, tip fillet, load
 rating, pair interference validation or manufacturing guarantee is implemented.
-For a future unshifted pair, `a=m*(z1+z2)/2`; the pair solver is the next stage.
+For an unshifted pair, `a=m*(z1+z2)/2`.
+
+## Fixed-spacing pair solver
+
+`PairDefinition` contains shared module, pressure angle, total pair backlash and
+thickness. Both gears receive B/2 thickness reduction, so their sum is B at the
+nominal pitch circles. No automatic scale change or profile shift is permitted.
+
+`solve_tooth_counts` validates each SpurGearSpec and nominal spacing, reporting
+actual distance, required distance, absolute error and error/required distance.
+The accepted error is `max(absolute_mm, relative*max(actual,required))`, default
+1e-6 mm absolute and 1e-9 relative. Boundaries allow four operand ULPs for floating
+roundoff. Zero tolerances still allow that roundoff allowance. Use an appropriately
+small absolute tolerance for microscopic geometry; no implicit scale adjustment
+of the tolerance is made.
+
+`solve_axis_pair` derives local spacing at the first axis origin, accepts parallel
+or antiparallel directions, and rejects coincident, intersecting and skew axes.
+Almost-parallel acceptance also requires `thickness*sin(axis_angle)` no greater
+than the geometry distance tolerance, bounding full-width direction deviation.
+This remains a local parallel approximation and defines no Fusion placement.
+
+`search_ratio` enumerates supported integer gears in a configurable subset of
+18..400 teeth, filtering by the single-gear domain, center tolerance and relative
+ratio error `abs(z2/z1-desired)/desired`. The desired ratio is positive and may be
+less than one. It is a magnitude; external gears rotate in opposite directions.
+The default error limit is explicitly 10%; zero requests an exact numeric ratio.
+Positive error boundaries include four ratio-operand ULPs of roundoff allowance.
+Every matching candidate is returned, ordered by absolute center error, relative
+ratio error, z1 and z2. No arbitrary winner or hidden truncation. Search is bounded
+by 383 squared pairs; no result raises NoPairSolutionError with input context.
+Candidates whose relative error overflows are rejected: a finite error limit
+cannot accept infinity, even when the floating-point boundary allowance overflows.
+
+At 45 mm, module 1.5 and desired ratio 2, the default search ranks 20/40, 21/39,
+19/41. Only 20/40 survives an exact-ratio request. Actual shaft spacing is retained
+even when a small mismatch is accepted; operating backlash/contact ratio at a
+non-nominal spacing is not calculated. These are dimensional candidates, not a
+certification of interference-free operation or strength. Full rotating-pair
+interference and tooth clocking require the next placement/validation work.
